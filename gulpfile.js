@@ -7,10 +7,10 @@ var gulp 	= require('gulp'),
 
 gulp.task('default', function() {
 	console.log('Watching for new images...');
-	gulp.watch( 'assets/img/*', ['imagemin'] );
+	gulp.watch( 'assets/images/*', ['imagemin'] );
 
 	console.log('Watching for changes in sass...');
-	gulp.watch( 'assets/sass/main.sass', ['compilescss'] );
+	gulp.watch( 'assets/sass/**/*.scss', ['compilescss'] );
 
 	console.log('Watching for changes in js files...');
 	gulp.watch( 'app/**/*.js', ['minifyAppFactories'] );
@@ -21,9 +21,9 @@ gulp.task('default', function() {
 gulp.task('imagemin', function() {
 	console.log('Compressing your images');
 	return pipe([
-		gulp.src('assets/img/**/*.*')
+		gulp.src('assets/images/**/*.*')
 		,image()
-		,gulp.dest('dist/img')
+		,gulp.dest('dist/images')
 	]).on('error', function(e){ console.log(e) });
 });
 
