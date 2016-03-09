@@ -6,14 +6,14 @@ var gulp 	= require('gulp'),
 	image 	= require('gulp-imagemin');
 
 gulp.task('default', function() {
-	console.log('watching for new images');
+	console.log('Watching for new images...');
 	gulp.watch( 'assets/img/*', ['imagemin'] );
 
-	console.log('watching for changes in sass');
-	gulp.watch( 'assets/sass/main.sass', ['compilesass'] );
+	console.log('Watching for changes in sass...');
+	gulp.watch( 'assets/sass/main.sass', ['compilescss'] );
 
-	console.log('Watching for changes in js files');
-	gulp.watch( 'assets/js/**/*.js', ['concatjs'] );
+	console.log('Watching for changes in js files...');
+	gulp.watch( 'app/**/*.js', ['minifyApp'] );
 });
 
 gulp.task('imagemin', function() {
@@ -25,10 +25,10 @@ gulp.task('imagemin', function() {
 	]).on('error', function(e){ console.log(e) });
 });
 
-gulp.task('compilesass', function() {
-	console.log('Compiling SASS');
+gulp.task('compilescss', function() {
+	console.log('Compiling SCSS');
 	return pipe([
-		gulp.src('assets/sass/main.sass')
+		gulp.src('assets/sass/styles.scss')
 		,sass({outputStyle: 'compressed'}).on('error', sass.logError)
 		,gulp.dest('dist/css')
 	]).on('error', function(e){ console.log(e) });
@@ -39,6 +39,30 @@ gulp.task('concatjs', function() {
 	return pipe([
 		gulp.src('assets/js/**/*.js')
 		,concat('all.js')
+		,uglify()
+		,gulp.dest('dist/js')
+	]).on('error', function(e){ console.log(e) });
+});
+
+gulp.task('minifyApp', function() {
+	console.log('Minifing app');
+	return pipe([
+		gulp.src('app/components/*Factory.js')
+		,concat('factories.js')
+		,uglify()
+		,gulp.dest('dist/js')
+	]).on('error', function(e){ console.log(e) });
+
+	return pipe([
+		gulp.src('app/components/*Service.js')
+		,concat('services.js')
+		,uglify()
+		,gulp.dest('dist/js')
+	]).on('error', function(e){ console.log(e) });
+
+	return pipe([
+		gulp.src('app/components/*Controller.js')
+		,concat('controllers.js')
 		,uglify()
 		,gulp.dest('dist/js')
 	]).on('error', function(e){ console.log(e) });
