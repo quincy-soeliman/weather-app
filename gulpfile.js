@@ -13,7 +13,9 @@ gulp.task('default', function() {
 	gulp.watch( 'assets/sass/main.sass', ['compilescss'] );
 
 	console.log('Watching for changes in js files...');
-	gulp.watch( 'app/**/*.js', ['minifyApp'] );
+	gulp.watch( 'app/**/*.js', ['minifyAppFactories'] );
+	gulp.watch( 'app/**/*.js', ['minifyAppServices'] );
+	gulp.watch( 'app/**/*.js', ['minifyAppControllers'] );
 });
 
 gulp.task('imagemin', function() {
@@ -44,7 +46,7 @@ gulp.task('concatjs', function() {
 	]).on('error', function(e){ console.log(e) });
 });
 
-gulp.task('minifyApp', function() {
+gulp.task('minifyAppFactories', function() {
 	console.log('Minifing app');
 	return pipe([
 		gulp.src('app/components/*Factory.js')
@@ -52,14 +54,18 @@ gulp.task('minifyApp', function() {
 		,uglify()
 		,gulp.dest('dist/js')
 	]).on('error', function(e){ console.log(e) });
+});
 
+gulp.task('minifyAppServices', function() {
 	return pipe([
 		gulp.src('app/components/*Service.js')
 		,concat('services.js')
 		,uglify()
 		,gulp.dest('dist/js')
 	]).on('error', function(e){ console.log(e) });
+});
 
+gulp.task('minifyAppControllers', function() {
 	return pipe([
 		gulp.src('app/components/*Controller.js')
 		,concat('controllers.js')
