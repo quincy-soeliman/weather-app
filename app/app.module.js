@@ -3,4 +3,4 @@ angular
 		'services',
 		'factories',
 		'controllers'
-	])
+	]);
