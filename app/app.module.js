@@ -1,3 +1,4 @@
-angular.module('weatherApp', [
-  'home'
-]);
+angular
+  .module('weatherApp', [
+    'home'
+  ]);

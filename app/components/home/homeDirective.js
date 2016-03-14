@@ -1,5 +1,8 @@
-angular.module('homeDirective', ['searchBarDirective'])
-  .directive('homePage', function() {
+angular
+  .module('homeDirective', [
+    'searchBarDirective'
+  ])
+  .directive('homeView', function() {
     return {
       restrict: 'E',
       templateUrl: 'app/components/home/homeView.html',

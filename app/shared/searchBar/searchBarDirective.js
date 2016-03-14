@@ -1,4 +1,5 @@
-angular.module('searchBarDirective', [])
+angular
+  .module('searchBarDirective', [])
   .directive('searchBar', function() {
     return {
       restrict: 'E',
