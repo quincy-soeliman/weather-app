@@ -1,4 +1,4 @@
-angular.module('weatherData')
+angular.module('weatherData', [])
   .factory('weatherDataFactory', ['$http', function($http) {
-    
+
   }]);

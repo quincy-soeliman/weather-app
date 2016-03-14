@@ -1,6 +1,1 @@
-angular
-	.module("weatherApp", [
-		'services',
-		'factories',
-		'controllers'
-	]);
+angular.module('weatherApp', []);
