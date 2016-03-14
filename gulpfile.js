@@ -20,6 +20,17 @@ gulp.task('default', function() {
 	gulp.watch( 'app/app.routes.js', ['minifyAppRoutes'] );
 });
 
+gulp.task('compileAll', function() {
+	console.log("Compiling all the shit");
+	gulp.start('imagemin');
+	gulp.start('compilescss');
+	gulp.start('minifyApp');
+	gulp.start('minifyAppControllers');
+	gulp.start('minifyAppDirectives');
+	gulp.start('minifyAppFactories');
+	gulp.start('minifyAppRoutes');
+});
+
 gulp.task('imagemin', function() {
 	console.log('Compressing your images');
 	return pipe([
