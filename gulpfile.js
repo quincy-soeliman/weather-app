@@ -41,6 +41,7 @@ gulp.task('compilescss', function() {
 gulp.task('minifyApp', function() {
 	return pipe([
 		gulp.src('app/app.module.js')
+		,concat('app.js')
 		,uglify()
 		,gulp.dest('dist/js')
 	]).on('error', function(e){ console.log(e) });
@@ -77,6 +78,7 @@ gulp.task('minifyAppControllers', function() {
 gulp.task('minifyAppRoutes', function() {
 	return pipe([
 		gulp.src('app/app.routes.js')
+		,concat('routes.js')
 		,uglify()
 		,gulp.dest('dist/js')
 	]).on('error', function(e){ console.log(e) });
