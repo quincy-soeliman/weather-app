@@ -15,7 +15,7 @@ angular
       if (location != undefined) {
         locationDataFactory.getLocationData(location).then(function(response) {
           $scope.locationData = response.data.results[0];
-          $scope.address = $scope.data.formatted_address;
+          $scope.address = $scope.locationData.formatted_address;
           $scope.location.lat = $scope.locationData.geometry.location.lat;
           $scope.location.lng = $scope.locationData.geometry.location.lng;
 
