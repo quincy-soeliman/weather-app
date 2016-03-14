@@ -13,9 +13,11 @@ gulp.task('default', function() {
 	gulp.watch( 'assets/sass/**/*.scss', ['compilescss'] );
 
 	console.log('Watching for changes in js files...');
+	gulp.watch( 'app/app.module.js', ['minifyApp'] );
 	gulp.watch( 'app/**/*Factory.js', ['minifyAppFactories'] );
 	gulp.watch( 'app/**/*Directives.js', ['minifyAppDirectives'] );
 	gulp.watch( 'app/**/*Controller.js', ['minifyAppControllers'] );
+	gulp.watch( 'app/app.routes.js', ['minifyAppRoutes'] );
 });
 
 gulp.task('imagemin', function() {
@@ -36,11 +38,9 @@ gulp.task('compilescss', function() {
 	]).on('error', function(e){ console.log(e) });
 });
 
-gulp.task('concatjs', function() {
-	console.log('Merging and uglifying your js files');
+gulp.task('minifyApp', function() {
 	return pipe([
-		gulp.src('assets/js/**/*.js')
-		,concat('all.js')
+		gulp.src('app/app.module.js')
 		,uglify()
 		,gulp.dest('dist/js')
 	]).on('error', function(e){ console.log(e) });
@@ -69,6 +69,14 @@ gulp.task('minifyAppControllers', function() {
 	return pipe([
 		gulp.src('app/**/*Controller.js')
 		,concat('controllers.js')
+		,uglify()
+		,gulp.dest('dist/js')
+	]).on('error', function(e){ console.log(e) });
+});
+
+gulp.task('minifyAppRoutes', function() {
+	return pipe([
+		gulp.src('app/app.routes.js')
 		,uglify()
 		,gulp.dest('dist/js')
 	]).on('error', function(e){ console.log(e) });
