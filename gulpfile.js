@@ -14,10 +14,10 @@ gulp.task('default', function() {
 
 	console.log('Watching for changes in js files...');
 	gulp.watch( 'app/app.module.js', ['minifyApp'] );
-	gulp.watch( 'app/**/*Factory.js', ['minifyAppFactories'] );
-	gulp.watch( 'app/**/*Directive.js', ['minifyAppDirectives'] );
-	gulp.watch( 'app/**/*Controller.js', ['minifyAppControllers'] );
 	gulp.watch( 'app/app.routes.js', ['minifyAppRoutes'] );
+	gulp.watch( 'app/**/*Controller.js', ['minifyAppControllers'] );
+	gulp.watch( 'app/**/*Directive.js', ['minifyAppDirectives'] );
+	gulp.watch( 'app/**/*Factory.js', ['minifyAppFactories'] );
 });
 
 gulp.task('compileAll', function() {
@@ -25,10 +25,10 @@ gulp.task('compileAll', function() {
 	gulp.start('imagemin');
 	gulp.start('compilescss');
 	gulp.start('minifyApp');
+	gulp.start('minifyAppRoutes');
 	gulp.start('minifyAppControllers');
 	gulp.start('minifyAppDirectives');
 	gulp.start('minifyAppFactories');
-	gulp.start('minifyAppRoutes');
 });
 
 gulp.task('imagemin', function() {
