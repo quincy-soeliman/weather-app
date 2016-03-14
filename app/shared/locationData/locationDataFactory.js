@@ -6,13 +6,9 @@ angular.module('locationData', [])
     var locationDataFactory = {};
 
     locationDataFactory.getLocationData = function($data) {
-      if (typeof $data == 'undefined') {
-        return 'lol';
-      } else {
-        $data = $data.replace(' ', '%20');
+      $data = $data.replace(' ', '%20');
 
-        return $http.get(urlBase + $data);
-      }
+      return $http.get(urlBase + $data);
     }
 
     return locationDataFactory;
