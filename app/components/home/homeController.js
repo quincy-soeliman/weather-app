@@ -26,7 +26,13 @@ angular
 
     $scope.fetchWeatherData = function(latitude, longitude) {
       weatherDataFactory.getWeatherData(latitude, longitude).then(function(response) {
-        console.log(response.data);
+
+        var currentWeather = response.data.currently;
+        $scope.weatherData.weatherStatus = "";
+
+        var farenheitToCelcius = function( deg ) {
+          var t ;
+        }
       })
     };
   }]);
