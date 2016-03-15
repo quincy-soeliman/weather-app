@@ -19,16 +19,14 @@ angular
           $scope.location.lat = $scope.locationData.geometry.location.lat;
           $scope.location.lng = $scope.locationData.geometry.location.lng;
 
-          console.log($scope.locationData);
-
-          // TODO: Call fetchWeatherData function?
+          $scope.fetchWeatherData($scope.location.lat, $scope.location.lng);
         });
       }
     };
 
     $scope.fetchWeatherData = function(latitude, longitude) {
       weatherDataFactory.getWeatherData(latitude, longitude).then(function(response) {
-        // TODO: Save data in $scope
+        console.log(response.data);
       })
     };
   }]);

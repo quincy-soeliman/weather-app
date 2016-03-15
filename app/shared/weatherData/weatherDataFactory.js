@@ -7,7 +7,7 @@ angular
     var weatherDataFactory = {};
 
     weatherDataFactory.getWeatherData = function(latitude, longitude) {
-      return $http.get(urlBase + latitude + ',' + longitude);
+      return $http.jsonp(urlBase + latitude + ',' + longitude + '?callback=JSON_CALLBACK');
     };
 
     return weatherDataFactory;
