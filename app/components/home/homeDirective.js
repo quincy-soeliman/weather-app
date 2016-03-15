@@ -8,4 +8,4 @@ angular
       templateUrl: 'app/components/home/homeView.html',
       controller: 'homeController'
     }
-  })
+  });

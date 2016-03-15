@@ -5,5 +5,5 @@ angular
       restrict: 'E',
       templateUrl: 'app/components/detail/detailView.html',
       controller: 'detailController'
-    }
-  };
+    };
+  });

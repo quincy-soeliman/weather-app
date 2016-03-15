@@ -1,2 +1,2 @@
 angular
-  .module('routes', [])
+  .module('routes', []);

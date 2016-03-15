@@ -2,7 +2,7 @@ angular
   .module('home', [
     'homeDirective',
     'locationData',
-    'weatherData'
+    'weatherData',
   ])
   .controller('homeController', ['$scope', 'locationDataFactory', 'weatherDataFactory', function($scope, locationDataFactory, weatherDataFactory) {
     $scope.locationData = {};
@@ -29,6 +29,6 @@ angular
     $scope.fetchWeatherData = function(latitude, longitude) {
       weatherDataFactory.getWeatherData(latitude, longitude).then(function(response) {
         // TODO: Save data in $scope
-      });
-    }
+      })
+    };
   }]);

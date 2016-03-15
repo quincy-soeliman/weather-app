@@ -9,7 +9,7 @@ angular
       location = location.replace(' ', '%20');
 
       return $http.get(urlBase + location);
-    }
+    };
 
     return locationDataFactory;
   }]);
