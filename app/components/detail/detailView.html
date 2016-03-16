@@ -20,36 +20,38 @@
   <div class="main-content">
     <div class="row">
       <div class="weather-icon col-sm-4">
-        Weather
+        <img src="dist/images/icons/{{ weatherIcon }}" alt="{{ weatherIcon }}">
+        <br /  >
+        lolololol
       </div>
 
       <div class="weather-temperature col-sm-8">
         <div class="row">
-          lol
+          Temperature: {{ temperature }}°
         </div>
 
         <div class="row">
-          Feels like lol
+          Feels like: {{ apparentTemp }}°
         </div>
 
         <div class="row">
-          <div class="min-temperature col-sm-6">{{ minTemp }}</div>
-          <div class="max-temperature col-sm-6">{{ maxTemp }}</div>
+          <div class="min-temperature col-sm-6">Min: {{ minTemp }}°</div>
+          <div class="max-temperature col-sm-6">Max: {{ maxTemp }}°</div>
         </div>
       </div>
     </div>
 
     <div class="row">
       <div class="extra-data">
-        <div class="col-sm-4">Chance of rain</div>
-        <div class="col-sm-4">Windspeed</div>
-        <div class="col-sm-4">Windrotation</div>
+        <div class="col-sm-4">Humidity: {{ humidity }}</div>
+        <div class="col-sm-4">Windspeed: {{ windSpeed }}</div>
+        <div class="col-sm-4">Windbearing: {{ windBearing }}</div>
       </div>
     </div>
 
     <div class="row">
-      <div class="description col-sm-12">
-        Description
+      <div class="summary col-sm-12">
+        <p>{{ summary }}</p>
       </div>
     </div>
   </div>
