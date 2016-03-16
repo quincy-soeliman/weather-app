@@ -11,6 +11,9 @@ angular
     $scope.address = '';
     $scope.location = {};
 
+    $scope.minTemp = '';
+    $scope.maxTemp = '';
+
     $scope.fetchLocationData = function(location) {
       if (location != undefined) {
         locationDataFactory.getLocationData(location).then(function(response) {
@@ -26,7 +29,11 @@ angular
 
     $scope.fetchWeatherData = function(latitude, longitude) {
       weatherDataFactory.getWeatherData(latitude, longitude).then(function(response) {
-        console.log(response.data);
+        // TODO: Get daily datapoint and replace data[0]
+        console.log(response);
+        $scope.weatherData = response.data.daily.data[0];
+        $scope.minTemp = $scope.weatherData.temperatureMin;
+        $scope.maxTemp = $scope.weatherData.temperatureMax;
       })
     };
   }]);

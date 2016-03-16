@@ -1,5 +1,6 @@
 angular
   .module('weatherApp', [
     'routes',
-    'home'
+    'home',
+    'detail'
   ]);

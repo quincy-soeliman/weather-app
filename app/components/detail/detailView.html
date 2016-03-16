@@ -1,5 +1,56 @@
 <search-bar></search-bar>
 
-<div class="address-container">
-  <h2>{{ address }}</h2>
+<div class="detail-container">
+  <div class="header">
+    <div class="row">
+      <div class="col-sm-2">
+        <a ui-sref="home">Back</a>
+      </div>
+
+      <div class="col-sm-8">
+        {{ address }}
+      </div>
+
+      <div class="col-sm-2">
+        <a ui-sref="settings">Settings</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="row">
+      <div class="weather-icon col-sm-4">
+        Weather
+      </div>
+
+      <div class="weather-temperature col-sm-8">
+        <div class="row">
+          lol
+        </div>
+
+        <div class="row">
+          Feels like lol
+        </div>
+
+        <div class="row">
+          <div class="min-temperature col-sm-6">{{ minTemp }}</div>
+          <div class="max-temperature col-sm-6">{{ maxTemp }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="extra-data">
+        <div class="col-sm-4">Chance of rain</div>
+        <div class="col-sm-4">Windspeed</div>
+        <div class="col-sm-4">Windrotation</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="description col-sm-12">
+        Description
+      </div>
+    </div>
+  </div>
 </div>
