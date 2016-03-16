@@ -20,9 +20,7 @@
   <div class="main-content">
     <div class="row">
       <div class="weather-icon col-sm-4">
-        <img src="dist/images/icons/{{ weatherIcon }}" alt="{{ weatherIcon }}">
-        <br /  >
-        lolololol
+        <canvas id="{{ weatherIcon }}" width="128" height="128" ng-click="loadWeatherImage()"></canvas>
       </div>
 
       <div class="weather-temperature col-sm-8">

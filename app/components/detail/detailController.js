@@ -4,7 +4,7 @@ angular
     'locationData',
     'weatherData'
   ])
-  .controller('detailController', ['$scope', 'locationDataFactory', 'weatherDataFactory', function($scope, locationDataFactory, weatherDataFactory) {
+  .controller('detailController', ['$scope', '$timeout', 'locationDataFactory', 'weatherDataFactory', function($scope, $timeout, locationDataFactory, weatherDataFactory) {
     $scope.locationData = {};
     $scope.weatherData = {};
 
@@ -47,6 +47,10 @@ angular
         $scope.windSpeed = $scope.weatherData.windSpeed;
         $scope.humidity = $scope.weatherData.humidity;
         $scope.getWindBearing($scope.weatherData.windBearing);
+
+        $timeout(function() {
+          $scope.loadWeatherImage();
+        }, 1);
       });
     };
 
@@ -86,5 +90,20 @@ angular
           $scope.windBearing = 'north-west';
           break;
       }
+    };
+
+    $scope.loadWeatherImage = function() {
+      var icons = new Skycons();
+      var list  = [
+        "clear-day", "clear-night", "partly-cloudy-day",
+        "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+        "fog"
+      ];
+
+      for (var i = list.length; i--;) {
+        icons.set(list[i], list[i]);
+      }
+
+      icons.play();
     };
   }]);
