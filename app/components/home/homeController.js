@@ -26,7 +26,6 @@ angular
       }
     };
 
-
     $scope.fetchWeatherData = function(latitude, longitude) {
       weatherDataFactory.getWeatherData(latitude, longitude).then(function(response) {
         var currentWeather = response.data.currently;
@@ -35,8 +34,6 @@ angular
         $scope.weatherData.weatherStatus.icon = response.icon;
 
         $scope.weatherData.currentTemperature = currentWeather.apparentTemperature;
-
-
       })
     };
   }]);
