@@ -13,46 +13,46 @@ angular
     // TODO: Set weatherIcon default
     $scope.windBearing = '';
 
-    $scope.fetchLocationData = function(location) {
-      if (location != undefined) {
-        locationDataFactory.getLocationData(location).then(function(response) {
-          $scope.locationData = response.data.results[0];
-          $scope.address = $scope.locationData.formatted_address;
-          $scope.location.lat = $scope.locationData.geometry.location.lat;
-          $scope.location.lng = $scope.locationData.geometry.location.lng;
-
-          $scope.fetchWeatherData($scope.location.lat, $scope.location.lng);
-        });
-      }
-    };
-
-    $scope.fetchWeatherData = function(latitude, longitude) {
-      weatherDataFactory.getWeatherData(latitude, longitude).then(function(response) {
-        // TODO: Get daily datapoint and replace data[0]
-        console.log(response.data);
-        $scope.weatherData = response.data.daily.data[0];
-
-        $scope.minTemp = Math.round($scope.weatherData.temperatureMin);
-        $scope.maxTemp = Math.round($scope.weatherData.temperatureMax);
-        $scope.getTemperature($scope.minTemp, $scope.maxTemp);
-
-        $scope.minApparentTemp = $scope.weatherData.apparentTemperatureMin;
-        $scope.maxApparentTemp = $scope.weatherData.apparentTemperatureMax;
-        $scope.getApparentTemperature($scope.minApparentTemp, $scope.maxApparentTemp);
-
-        $scope.summary = $scope.weatherData.summary;
-
-        $scope.weatherIcon = $scope.weatherData.icon;
-
-        $scope.windSpeed = $scope.weatherData.windSpeed;
-        $scope.humidity = $scope.weatherData.humidity;
-        $scope.getWindBearing($scope.weatherData.windBearing);
-
-        $timeout(function() {
-          $scope.loadWeatherImage();
-        }, 1);
-      });
-    };
+    // $scope.fetchLocationData = function(location) {
+    //   if (location != undefined) {
+    //     locationDataFactory.getLocationData(location).then(function(response) {
+    //       $scope.locationData = response.data.results[0];
+    //       $scope.address = $scope.locationData.formatted_address;
+    //       $scope.location.lat = $scope.locationData.geometry.location.lat;
+    //       $scope.location.lng = $scope.locationData.geometry.location.lng;
+    //
+    //       $scope.fetchWeatherData($scope.location.lat, $scope.location.lng);
+    //     });
+    //   }
+    // };
+    //
+    // $scope.fetchWeatherData = function(latitude, longitude) {
+    //   weatherDataFactory.getWeatherData(latitude, longitude).then(function(response) {
+    //     // TODO: Get daily datapoint and replace data[0]
+    //     console.log(response.data);
+    //     $scope.weatherData = response.data.daily.data[0];
+    //
+    //     $scope.minTemp = Math.round($scope.weatherData.temperatureMin);
+    //     $scope.maxTemp = Math.round($scope.weatherData.temperatureMax);
+    //     $scope.getTemperature($scope.minTemp, $scope.maxTemp);
+    //
+    //     $scope.minApparentTemp = $scope.weatherData.apparentTemperatureMin;
+    //     $scope.maxApparentTemp = $scope.weatherData.apparentTemperatureMax;
+    //     $scope.getApparentTemperature($scope.minApparentTemp, $scope.maxApparentTemp);
+    //
+    //     $scope.summary = $scope.weatherData.summary;
+    //
+    //     $scope.weatherIcon = $scope.weatherData.icon;
+    //
+    //     $scope.windSpeed = $scope.weatherData.windSpeed;
+    //     $scope.humidity = $scope.weatherData.humidity;
+    //     $scope.getWindBearing($scope.weatherData.windBearing);
+    //
+    //     $timeout(function() {
+    //       $scope.loadWeatherImage();
+    //     }, 1);
+    //   });
+    // };
 
     $scope.getTemperature = function(minTemp, maxTemp) {
       $scope.temperature = Math.round((minTemp + maxTemp) / 2);

@@ -20,6 +20,8 @@ angular
           $scope.location.lng = $scope.locationData.geometry.location.lng;
 
           $scope.fetchWeatherData($scope.location.lat, $scope.location.lng);
+
+          console.log('t');
         });
       }
     };
@@ -28,7 +30,6 @@ angular
     $scope.fetchWeatherData = function(latitude, longitude) {
       weatherDataFactory.getWeatherData(latitude, longitude).then(function(response) {
         var currentWeather = response.data.currently;
-console.log("test");
         $scope.weatherData.weatherStatus = {};
         $scope.weatherData.weatherStatus.status = response.summary;
         $scope.weatherData.weatherStatus.icon = response.icon;
@@ -36,6 +37,6 @@ console.log("test");
         $scope.weatherData.currentTemperature = currentWeather.apparentTemperature;
 
 
-      });
+      })
     };
   }]);
