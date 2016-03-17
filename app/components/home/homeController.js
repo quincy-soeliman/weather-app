@@ -6,7 +6,7 @@ angular
   ])
   .controller('homeController', ['$scope', 'locationDataFactory', 'weatherDataFactory', function($scope, locationDataFactory, weatherDataFactory) {
     $scope.locationData = {};
-    $scope.weatherData = {};
+    $scope.weatherData  = {};
 
     $scope.address = '';
     $scope.location = {};
@@ -20,8 +20,6 @@ angular
           $scope.location.lng = $scope.locationData.geometry.location.lng;
 
           $scope.fetchWeatherData($scope.location.lat, $scope.location.lng);
-
-          console.log('t');
         });
       }
     };
@@ -29,11 +27,28 @@ angular
     $scope.fetchWeatherData = function(latitude, longitude) {
       weatherDataFactory.getWeatherData(latitude, longitude).then(function(response) {
         var currentWeather = response.data.currently;
-        $scope.weatherData.weatherStatus = {};
-        $scope.weatherData.weatherStatus.status = response.summary;
-        $scope.weatherData.weatherStatus.icon = response.icon;
 
-        $scope.weatherData.currentTemperature = currentWeather.apparentTemperature;
+        $scope.weatherData.weatherStatus      = currentWeather.summary;
+        $scope.weatherData.weatherIcon        = currentWeather.icon;
+
+        $scope.weatherData.currentTemperature = Math.round(currentWeather.apparentTemperature) + "°";
+
+        humidityInPercent( currentWeather.humidity );
+
+        function humidityInPercent(hum) {
+          if( hum != 1 ) {
+            hum = Math.round( hum * 100 );
+            $scope.weatherData.humidity = hum + "%";
+          } else {
+            $scope.weatherData.humidity = "100%";
+          }
+        }
+
+        function getWindDirection(deg) {
+
+        }
+
+        console.log(currentWeather);
       })
     };
   }]);
