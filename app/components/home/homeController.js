@@ -24,15 +24,18 @@ angular
       }
     };
 
+
     $scope.fetchWeatherData = function(latitude, longitude) {
       weatherDataFactory.getWeatherData(latitude, longitude).then(function(response) {
-
         var currentWeather = response.data.currently;
-        $scope.weatherData.weatherStatus = "";
+console.log("test");
+        $scope.weatherData.weatherStatus = {};
+        $scope.weatherData.weatherStatus.status = response.summary;
+        $scope.weatherData.weatherStatus.icon = response.icon;
 
-        var farenheitToCelcius = function( deg ) {
-          var t ;
-        }
-      })
+        $scope.weatherData.currentTemperature = currentWeather.apparentTemperature;
+
+
+      });
     };
   }]);
