@@ -32,8 +32,8 @@ angular
         console.log(response.data);
         $scope.weatherData = response.data.daily.data[0];
 
-        $scope.minTemp = $scope.weatherData.temperatureMin;
-        $scope.maxTemp = $scope.weatherData.temperatureMax;
+        $scope.minTemp = Math.round($scope.weatherData.temperatureMin);
+        $scope.maxTemp = Math.round($scope.weatherData.temperatureMax);
         $scope.getTemperature($scope.minTemp, $scope.maxTemp);
 
         $scope.minApparentTemp = $scope.weatherData.apparentTemperatureMin;

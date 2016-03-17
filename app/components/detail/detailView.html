@@ -7,8 +7,8 @@
         <a ui-sref="home">Back</a>
       </div>
 
-      <div class="col-sm-8">
-        {{ address }}
+      <div class="current-address col-sm-8">
+        <h1>{{ address }}</h1>
       </div>
 
       <div class="col-sm-2">
@@ -19,31 +19,50 @@
 
   <div class="main-content">
     <div class="row">
-      <div class="weather-icon col-sm-4">
-        <canvas id="{{ weatherIcon }}" width="128" height="128" ng-click="loadWeatherImage()"></canvas>
-      </div>
-
-      <div class="weather-temperature col-sm-8">
-        <div class="row">
-          Temperature: {{ temperature }}°
+      <div class="weather-container">
+        <div class="weather-icon col-sm-4">
+          <canvas id="{{ weatherIcon }}" width="128" height="128"></canvas>
         </div>
 
-        <div class="row">
-          Feels like: {{ apparentTemp }}°
-        </div>
+        <div class="weather-temperature col-sm-8">
+          <div class="row">
+            <div class="temperature col-sm-12">
+              <p>Temperature: {{ temperature }}°</p>
+            </div>
+          </div>
 
-        <div class="row">
-          <div class="min-temperature col-sm-6">Min: {{ minTemp }}°</div>
-          <div class="max-temperature col-sm-6">Max: {{ maxTemp }}°</div>
+          <div class="row">
+            <div class="apparent-temperature col-sm-12">
+              <p>Feels like: {{ apparentTemp }}°</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="min-temperature col-sm-6">
+              <p>Min: {{ minTemp }}°</p>
+            </div>
+
+            <div class="max-temperature col-sm-6">
+              <p>Max: {{ maxTemp }}°</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="extra-data">
-        <div class="col-sm-4">Humidity: {{ humidity }}</div>
-        <div class="col-sm-4">Windspeed: {{ windSpeed }}</div>
-        <div class="col-sm-4">Windbearing: {{ windBearing }}</div>
+      <div class="weather-extra-data-container">
+        <div class="humidity col-sm-4">
+          <p>Humidity: {{ humidity }}</p>
+        </div>
+
+        <div class="wind-speed col-sm-4">
+          <p>Windspeed: {{ windSpeed }}</p>
+        </div>
+
+        <div class="wind-bearing col-sm-4">
+          <p>Windbearing: {{ windBearing }}</p>
+        </div>
       </div>
     </div>
 
