@@ -10,5 +10,9 @@ angular
       return $http.jsonp(urlBase + latitude + ',' + longitude + '?callback=JSON_CALLBACK&units=ca');
     };
 
+    weatherDataFactory.getWeatherDataByTime = function(latitude, longitude, time) {
+      return $http.jsonp(urlBase + latitude + ',' + longitude + ',' + time + '?callback=JSON_CALLBACK&units=ca');
+    }
+
     return weatherDataFactory;
   }]);

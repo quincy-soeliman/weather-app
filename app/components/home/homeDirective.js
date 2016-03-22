@@ -1,7 +1,6 @@
 angular
   .module('homeDirective', [
-    'searchBarDirective',
-    'weatherForecastDirective'
+    'searchBarDirective'
   ])
   .directive('homeView', function() {
     return {

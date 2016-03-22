@@ -19,6 +19,15 @@ angular
           $scope.location.lat = $scope.locationData.geometry.location.lat;
           $scope.location.lng = $scope.locationData.geometry.location.lng;
 
+          var latLng = {
+            lat: $scope.location.lat,
+            lng: $scope.location.lng
+          }
+
+          // Save lat and lng
+          localStorage.setItem("latLng", angular.toJson(latLng));
+          $scope.$broadcast('initDayFetch', angular.toJson(latLng));
+
           $scope.fetchWeatherData($scope.location.lat, $scope.location.lng);
         });
       }
@@ -47,8 +56,6 @@ angular
         function getWindDirection(deg) {
 
         }
-
-        console.log(currentWeather);
       })
     };
   }]);
