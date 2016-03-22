@@ -26,23 +26,23 @@
 
         <div class="weather-temperature col-sm-8">
           <div class="row">
-            <div class="temperature col-sm-12">
+            <div class="temperature col-sm-12" ng-show"temperature">
               <p>Temperature: {{ temperature }}°</p>
             </div>
           </div>
 
           <div class="row">
-            <div class="apparent-temperature col-sm-12">
+            <div class="apparent-temperature col-sm-12" ng-show="apparentTemp">
               <p>Feels like: {{ apparentTemp }}°</p>
             </div>
           </div>
 
           <div class="row">
-            <div class="min-temperature col-sm-6">
+            <div class="min-temperature col-sm-6" ng-show="minTemp">
               <p>Min: {{ minTemp }}°</p>
             </div>
 
-            <div class="max-temperature col-sm-6">
+            <div class="max-temperature col-sm-6" ng-show="maxTemp">
               <p>Max: {{ maxTemp }}°</p>
             </div>
           </div>
@@ -52,22 +52,23 @@
 
     <div class="row">
       <div class="weather-extra-data-container">
-        <div class="humidity col-sm-4">
+        <div class="humidity col-sm-4" ng-show="humidity">
           <p>Humidity: {{ humidity }}</p>
         </div>
 
-        <div class="wind-speed col-sm-4">
+        <div class="wind-speed col-sm-4" ng-show="windSpeed">
           <p>Windspeed: {{ windSpeed }}</p>
         </div>
 
-        <div class="wind-bearing col-sm-4">
+        <div class="wind-bearing col-sm-4" ng-show="windBearing">
+          <object type="image/svg+xml" data="dist/images/compass.svg" class="compass-icon">Your browser does not support SVG</object>
           <p>Windbearing: {{ windBearing }}</p>
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="summary col-sm-12">
+      <div class="summary col-sm-12" ng-show="summary">
         <p>{{ summary }}</p>
       </div>
     </div>

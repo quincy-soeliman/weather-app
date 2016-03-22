@@ -122,4 +122,10 @@ angular
 
       icons.play();
     };
+
+    $scope.rotateCompass = function(degrees) {
+      $compass = $('.compass-icon');
+      $compass.css({ WebkitTransform: 'rotate(' + (degrees - 45) + 'deg)' });
+      $compass.css({ '-moz-transform': 'rotate(' + (degrees - 45) + 'deg)' });
+    };
   }]);

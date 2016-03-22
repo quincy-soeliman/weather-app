@@ -4,6 +4,13 @@ h3,
 h4,
 h5,
 p,
-a {
+a,
+li {
   font-family: 'Lato';
+  color: $color-secondary;
+}
+
+body {
+	background-color: black;
+	transition: background-color 0.2s ease-in-out;
 }

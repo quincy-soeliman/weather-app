@@ -1,9 +1,14 @@
 // Colors
-$primary-color: 'black';
-$secondary-color: 'white';
+$color-primary: 'black';
+$color-secondary: #fff;
+$color-tertiary: '';
 
-$site-background-color: $secondary-color !default;
+// Fonts
+$font-size-default: 14px;
+$font-size-small: 12px;
+$font-size-large: 18px;
 
+// Spacing
 $gutter-margin: 15px;
 
 // Detail page

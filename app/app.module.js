@@ -3,5 +3,6 @@ angular
     'routes',
     'home',
     'weatherForecast',
-    'detail'
+    'detail',
+    'settings'
   ]);
