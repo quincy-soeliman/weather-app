@@ -11,6 +11,8 @@ angular
     $scope.address = '';
     $scope.location = {};
 
+    $('body').css('background-color', localStorage.background_color);
+
     $scope.fetchLocationData = function(location) {
       if (location != undefined) {
         locationDataFactory.getLocationData(location).then(function(response) {
