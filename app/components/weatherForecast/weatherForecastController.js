@@ -11,10 +11,16 @@ angular
         $scope.dailyData = [];
 
         for (var i = 2; i < data.length; i++) {
-          $scope.dailyData.push(data[i]);
+          weatherDataFactory.daily.push(data[i]);
+          $scope.dailyData = weatherDataFactory.daily;
         };
       });
     });
+
+    $scope.redirectToDaily = function($index) {
+      console.log($index);
+      $window.location.href = '/#/detail';
+    };
 
     // $scope.redirectToDaily = function(time) {
     //   localStorage.setItem('timeStamp', angular.toJson(time));

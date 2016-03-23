@@ -14,5 +14,7 @@ angular
       return $http.jsonp(urlBase + latitude + ',' + longitude + ',' + time + '?callback=JSON_CALLBACK&units=ca');
     }
 
+    weatherDataFactory.daily = [];
+
     return weatherDataFactory;
   }]);

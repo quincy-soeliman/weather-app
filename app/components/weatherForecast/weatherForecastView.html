@@ -1,5 +1,5 @@
 <ul>
-  <li ng-repeat="day in dailyData">
+  <li ng-repeat="day in dailyData track by $index" ng-click="redirectToDaily($index)">
     {{ day.icon }}
   </li>
 </ul>

@@ -17,38 +17,13 @@ angular
 
     $timeout( function() {
       $scope.loadData();
-    },0, false)
+    }, 0);
 
     $scope.loadData = function() {
       $scope.timeStamp = angular.fromJson( localStorage.getItem('timeStamp') );
       $scope.latLng = angular.fromJson( localStorage.getItem("latLng") );
 
-      $scope.fetchWeatherDetailData($scope.latLng.lat, $scope.latLng.lng, $scope.timeStamp);
-    };
-
-    $scope.fetchWeatherDetailData = function(lat, lng, time) {
-        weatherDataFactory.getWeatherDataByTime(lat, lng, time).then(function(response) {
-
-          $scope.weatherData = response.data.currently;
-
-          console.log(response.data.currently);
-
-          $scope.temperature = $scope.weatherData.temperature;
-          $scope.apparentTemperature = $scope.weatherData.apparentTemperature;
-
-          $scope.currentDate = $scope.weatherData.time * 1000;
-          $scope.weatherIcon = $scope.weatherData.icon;
-
-          $scope.summary = $scope.weatherData.summary;
-          $scope.windSpeed = $scope.weatherData.windSpeed;
-          $scope.humidity = $scope.weatherData.humidity;
-          $scope.rotateCompass($scope.weatherData.windBearing);
-          $scope.getWindBearing($scope.weatherData.windBearing);
-
-          $timeout(function() {
-            $scope.loadWeatherImage();
-          }, 1);
-        });
+      
     };
 
     $scope.getWindBearing = function(windBearing) {
