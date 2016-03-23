@@ -1,49 +1,59 @@
 <div class="settings container">
-	<div class="row">
-		<h2>{{ title }}</h2>
-	</div>
+	<div class="header">
+		<div class="row">
+			<div class="col-sm-2">
+				<a ui-sref="home">Back</a>
+			</div>
 
-	<div class="row">
-		<div class="themes">
-			<h3>Themes</h3>
-
-			<div class="colors">
-				<span class="color blue"></span>
-				<span class="color purple"></span>
-				<span class="color red"></span>
-				<span class="color orange"></span>
+			<div class="col-sm-6">
+				<h2>{{ title }}</h2>
 			</div>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="degree-notation">
-			<h3>Change degree notation</h3>
+	<div class="main-content">
+		<div class="row">
+			<div class="themes">
+				<h3>Themes</h3>
 
-			<div class="degree-toggle">
-				<p ng-click="setTempScale('celsius')">C°</p>
-				<p ng-click="setTempScale('fahrenheit')">F°</p>
+				<div class="colors">
+					<span class="color blue"></span>
+					<span class="color purple"></span>
+					<span class="color red"></span>
+					<span class="color orange"></span>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="row">
-		<h3>Saved locations</h3>
-		<div class="locations-saved">
-			<ul>
-				<li>Breda, Netherlands</li>
-			</ul>
+		<div class="row">
+			<div class="degree-notation">
+				<h3>Change degree notation</h3>
 
-			<button class="btn-primary">Save current location</button>
+				<div class="degree-toggle">
+					<p ng-click="setTempScale('celsius')">C°</p>
+					<p ng-click="setTempScale('fahrenheit')">F°</p>
+				</div>
+			</div>
 		</div>
-	</div>
 
-	<div class="row">
-		<h3>Recently searched locations</h3>
-		<div class="locations-history">
-			<ul>
-				<li>Breda, Netherlands</li>
-			</ul>
+		<div class="row">
+			<h3>Saved locations</h3>
+			<div class="locations-saved">
+				<ul>
+					<li>Breda, Netherlands</li>
+				</ul>
+
+				<button class="btn-primary">Save current location</button>
+			</div>
+		</div>
+
+		<div class="row">
+			<h3>Recently searched locations</h3>
+			<div class="locations-history">
+				<ul>
+					<li>Breda, Netherlands</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>

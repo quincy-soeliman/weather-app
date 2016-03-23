@@ -10,26 +10,10 @@ angular
 
     $scope.location = {};
 
+    $('body').css('background-color', localStorage.background_color);
+
     // TODO: Set weatherIcon default
     $scope.windBearing = '';
-
-    // $scope.$on("initDetail", function(event, args) {
-    //   $scope.timeStamp = angular.fromJson( localStorage.getItem('timeStamp') );
-    //   $scope.latLng = angular.fromJson( localStorage.getItem("latLng") );
-    //
-    //   weatherDataFactory.getWeatherDataByTime($scope.latLng.lat, $scope.latLng.lng, $scope.timeStamp).then( function(response) {
-    //
-    //       $timeout( function() {
-    //         $scope.$apply( function() {
-    //           $scope.test = "Test";
-    //           console.log("in");
-    //         });
-    //       }, 0, false);
-    //
-    //   });
-    //
-    //   //$scope.fetchWeatherDetailData($scope.latLng.lat, $scope.latLng.lng, $scope.timeStamp);
-    // });
 
     $timeout( function() {
       $scope.loadData();
@@ -47,35 +31,24 @@ angular
 
           $scope.weatherData = response.data.currently;
 
-          $scope.minTemp = Math.round($scope.weatherData.temperatureMin);
-          $scope.maxTemp = Math.round($scope.weatherData.temperatureMax);
-          $scope.getTemperature($scope.minTemp, $scope.maxTemp);
+          console.log(response.data.currently);
 
-          $scope.minApparentTemp = $scope.weatherData.apparentTemperatureMin;
-          $scope.maxApparentTemp = $scope.weatherData.apparentTemperatureMax;
-          $scope.getApparentTemperature($scope.minApparentTemp, $scope.maxApparentTemp);
+          $scope.temperature = $scope.weatherData.temperature;
+          $scope.apparentTemperature = $scope.weatherData.apparentTemperature;
 
-          $scope.summary = $scope.weatherData.summary;
-
+          $scope.currentDate = $scope.weatherData.time * 1000;
           $scope.weatherIcon = $scope.weatherData.icon;
 
+          $scope.summary = $scope.weatherData.summary;
           $scope.windSpeed = $scope.weatherData.windSpeed;
           $scope.humidity = $scope.weatherData.humidity;
+          $scope.rotateCompass($scope.weatherData.windBearing);
           $scope.getWindBearing($scope.weatherData.windBearing);
 
           $timeout(function() {
             $scope.loadWeatherImage();
           }, 1);
         });
-
-    };
-
-    $scope.getTemperature = function(minTemp, maxTemp) {
-      $scope.temperature = Math.round((minTemp + maxTemp) / 2);
-    };
-
-    $scope.getApparentTemperature = function(minApparentTemp, maxApparentTemp) {
-      $scope.apparentTemp = Math.round((minApparentTemp + maxApparentTemp) / 2);
     };
 
     $scope.getWindBearing = function(windBearing) {

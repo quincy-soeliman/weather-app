@@ -19,16 +19,16 @@ angular
           $scope.locationData = response.data.results[0];
           $scope.address = $scope.locationData.formatted_address;
           $scope.location.lat = $scope.locationData.geometry.location.lat;
-          $scope.location.lng = $scope.locationData.geometry.location.lng;
+          $scope.location.lng = $scope.locationData.geometry.location.lng;  
 
-          var latLng = {
+          var location = {
             lat: $scope.location.lat,
             lng: $scope.location.lng
           }
 
           // Save lat and lng
-          localStorage.setItem("latLng", angular.toJson(latLng));
-          $scope.$broadcast('initDayFetch', angular.toJson(latLng));
+          localStorage.setItem("location", angular.toJson(location));
+          $scope.$broadcast('getDaily', angular.toJson(location));
 
           $scope.fetchWeatherData($scope.location.lat, $scope.location.lng);
         });
@@ -38,6 +38,8 @@ angular
     $scope.fetchWeatherData = function(latitude, longitude) {
       weatherDataFactory.getWeatherData(latitude, longitude).then(function(response) {
         var currentWeather = response.data.currently;
+
+        console.log(response);
 
         $scope.weatherData.weatherStatus      = currentWeather.summary;
         $scope.weatherData.weatherIcon        = currentWeather.icon;

@@ -1,7 +1,5 @@
 angular
-  .module('detailDirective', [
-    'searchBarDirective'
-  ])
+  .module('detailDirective', [])
   .directive('detailView', function() {
     return {
       restrict: 'E',

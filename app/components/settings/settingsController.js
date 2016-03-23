@@ -7,6 +7,8 @@ angular
 		$scope.title = 'Settings';
 		localStorage.background_color;
 
+		$('body').css('background-color', localStorage.background_color);
+
 		$('.color').each(function(i, color) {
 			if ($(this).css('background-color') == localStorage.background_color) {
 				$(color).addClass('selected');
