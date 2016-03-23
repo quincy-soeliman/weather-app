@@ -8,6 +8,8 @@ angular
     $scope.locationData = {};
     $scope.weatherData = {};
 
+    $('body').css('background-color', localStorage.background_color);
+
     $scope.location = {};
 
     $('body').css('background-color', localStorage.background_color);

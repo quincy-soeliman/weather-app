@@ -21,12 +21,12 @@ angular
 
 			localStorage.background_color = $(this).css('background-color');
 			$('body').css('background-color', localStorage.background_color);
-			
+
 			return localStorage.background_color;
 		});
 
 		$scope.setTempScale = function(tempScale) {
 			weatherDataFactory.tempScale = tempScale;
 		};
-		
+
 	}]);
