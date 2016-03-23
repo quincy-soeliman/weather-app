@@ -3,14 +3,15 @@ angular
   .controller('weatherForecastController', ['$scope', '$window', '$location','weatherDataFactory', function($scope, $window, $location, weatherDataFactory) {
 
     $scope.$on('getDaily', function() {
+      $scope.dailyData = [];
+      weatherDataFactory.daily = [];
+      
       $scope.location = angular.fromJson(localStorage.getItem('location'));
 
       weatherDataFactory.getWeatherData($scope.location.lat, $scope.location.lng).then(function(response) {
         var data = response.data.daily.data;
 
-        $scope.dailyData = [];
-
-        for (var i = 2; i < data.length; i++) {
+        for (var i = 1; i < data.length; i++) {
           weatherDataFactory.daily.push(data[i]);
           $scope.dailyData = weatherDataFactory.daily;
         };
@@ -18,12 +19,7 @@ angular
     });
 
     $scope.redirectToDaily = function($index) {
-      console.log($index);
+      weatherDataFactory.dailyIndex = $index;
       $window.location.href = '/#/detail';
     };
-
-    // $scope.redirectToDaily = function(time) {
-    //   localStorage.setItem('timeStamp', angular.toJson(time));
-    //   $window.location.href = "/#/detail";
-    // }
   }]);

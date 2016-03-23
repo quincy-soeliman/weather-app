@@ -10,52 +10,36 @@ angular
 
     $('body').css('background-color', localStorage.background_color);
 
-    $scope.location = {};
-
-    $('body').css('background-color', localStorage.background_color);
-
-    // TODO: Set weatherIcon default
-    $scope.windBearing = '';
-
-    $timeout( function() {
+    $timeout(function() {
       $scope.loadData();
     }, 0);
 
     $scope.loadData = function() {
-      $scope.timeStamp = angular.fromJson( localStorage.getItem('timeStamp') );
-      $scope.latLng = angular.fromJson( localStorage.getItem("latLng") );
+      var index = weatherDataFactory.dailyIndex;
+      $scope.weatherData = weatherDataFactory.daily[index];
 
-      
-    };
+      $timeout(function() {
+        $scope.loadWeatherImage();
+      }, 0);
 
-    $scope.getWindBearing = function(windBearing) {
-      switch (true) {
-        case (windBearing == 0):
-        default:
-          $scope.windBearing = 'north';
-          break;
-        case (windBearing > 0 && windBearing < 90):
-          $scope.windBearing = 'north-east';
-          break;
-        case (windBearing == 90):
-          $scope.windBearing = 'east';
-          break;
-        case (windBearing > 90 && windBearing < 180):
-          $scope.windBearing = 'south-east';
-          break;
-        case (windBearing == 180):
-          $scope.windBearing = 'south';
-          break;
-        case (windBearing > 180 && windBearing < 270):
-          $scope.windBearing = 'south-west';
-          break;
-        case (windBearing == 270):
-          $scope.windBearing = 'west';
-          break;
-        case (windBearing > 270 && windBearing < 360):
-          $scope.windBearing = 'north-west';
-          break;
-      }
+      $scope.weatherIcon = $scope.weatherData.icon;
+
+      $scope.currentDate = $scope.weatherData.time * 1000;
+
+      $scope.minTemp = $scope.weatherData.temperatureMin;
+      $scope.maxTemp = $scope.weatherData.temperatureMax;
+      $scope.temp = $scope.getAverageTemp($scope.minTemp, $scope.maxTemp);
+
+      $scope.minApparentTemp = $scope.weatherData.apparentTemperatureMin;
+      $scope.maxApparentTemp = $scope.weatherData.apparentTemperatureMax;
+      $scope.apparentTemp = $scope.getAverageTemp($scope.minApparentTemp, $scope.maxApparentTemp);
+
+      $scope.humidity = $scope.weatherData.humidity;
+      $scope.windSpeed = $scope.weatherData.windSpeed;
+      $scope.rotateCompass($scope.weatherData.windBearing);
+      $scope.convertWindDirection($scope.weatherData.windBearing);
+
+      $scope.summary = $scope.weatherData.summary;
     };
 
     $scope.loadWeatherImage = function() {
@@ -73,9 +57,47 @@ angular
       icons.play();
     };
 
+    $scope.getAverageTemp = function(minTemp, maxTemp) {
+      return Math.round((minTemp + maxTemp) / 2);
+    };
+
     $scope.rotateCompass = function(degrees) {
       $compass = $('.compass-icon');
-      $compass.css({ WebkitTransform: 'rotate(' + (degrees - 45) + 'deg)' });
+      
+      $compass.css({ '-webkit-transform': 'rotate(' + (degrees - 45) + 'deg)' });
       $compass.css({ '-moz-transform': 'rotate(' + (degrees - 45) + 'deg)' });
+      $compass.css({ 'transform': 'rotate(' + (degrees - 45) + 'deg)' });
     };
+
+    $scope.convertWindDirection = function(deg) {
+      deg = ( deg != 0 && deg != 90 && deg != 180 && deg != 270 ) ? callback() : checkNESW();
+
+      function callback() {
+        deg = ( deg <= 180 ) ? callbackLess() : callbackMore();
+      }
+
+      function checkNESW() {
+        deg = ( deg == 0 || deg == 90 ) ? switchNESW('1') : switchNESW('2');
+      }
+
+      function switchNESW(mode) {
+        switch(mode) {
+          case '1':
+            $scope.windDirection = ( deg == 0 ) ? 'North' : 'East';
+            break;
+          case '2':
+            $scope.windDirection = ( deg == 180 ) ? 'South' : 'West';
+            break;
+        }
+      }
+
+      function callbackLess() {
+        $scope.windDirection = ( deg <= 90 ) ? 'North-East' : 'South-East';
+      }
+
+      function callbackMore() {
+        $scope.windDirection = ( deg <= 270 ) ? 'South-west' : 'North-West';
+      }
+    };
+
   }]);

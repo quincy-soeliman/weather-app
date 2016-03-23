@@ -30,14 +30,14 @@
 
         <div class="weather-temperature col-sm-8">
           <div class="row">
-            <div class="temperature col-sm-12" ng-show"temperature">
-              <p>{{ temperature }}°</p>
+            <div class="temperature col-sm-12" ng-show"temp">
+              <p>{{ temp }}°</p>
             </div>
           </div>
 
           <div class="row">
-            <div class="apparent-temperature col-sm-12" ng-show="apparentTemperature">
-              <p>Feels like: {{ apparentTemperature }}°</p>
+            <div class="apparent-temperature col-sm-12" ng-show="apparentTemp">
+              <p>Feels like: {{ apparentTemp }}°</p>
             </div>
           </div>
 
@@ -64,9 +64,9 @@
           <p>Windspeed: {{ windSpeed }}</p>
         </div>
 
-        <div class="wind-bearing col-sm-4" ng-show="windBearing">
+        <div class="wind-bearing col-sm-4" ng-show="windDirection">
           <object type="image/svg+xml" data="dist/images/compass.svg" class="compass-icon">Your browser does not support SVG</object>
-          <p>Windbearing: {{ windBearing }}</p>
+          <p>{{ windDirection }}</p>
         </div>
       </div>
     </div>
