@@ -4,6 +4,6 @@ angular
     return {
       restrict: 'E',
       templateUrl: 'app/shared/searchBar/searchBarView.html',
-      controller: 'detailController'
+      controller: 'homeController'
     };
   });

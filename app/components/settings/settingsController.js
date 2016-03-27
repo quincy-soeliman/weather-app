@@ -29,4 +29,10 @@ angular
 			weatherDataFactory.tempScale = tempScale;
 		};
 
+		( function() {
+			//Load search history
+			var localSearchHistory = JSON.parse( localStorage.getItem("recentSearch") );
+			console.log(localSearchHistory);
+		}());
+
 	}]);

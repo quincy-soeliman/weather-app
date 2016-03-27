@@ -11,6 +11,8 @@ angular
     $scope.address = '';
     $scope.location = {};
 
+    var recentSearchItems = [];
+
     $('body').css('background-color', localStorage.background_color);
 
     $scope.fetchLocationData = function(location) {
@@ -28,23 +30,42 @@ angular
             lng: $scope.location.lng
           }
 
+          var recentSearch = {
+            name: $scope.address,
+            lat: $scope.location.lat,
+            lng: $scope.location.lng
+          }
+
           // Save lat and lng
           localStorage.setItem("location", angular.toJson(location));
           $scope.$broadcast('getDaily', angular.toJson(location));
 
           $scope.fetchWeatherData($scope.location.lat, $scope.location.lng);
+
+          $scope.saveToRecentlySearched(recentSearch);
         });
       }
+    };
+
+    $scope.saveToRecentlySearched = function(recent) {
+
+      if( localStorage.getItem("recentSearch") == null ) {
+        localStorage.setItem("recentSearch", recentSearchItems);
+      }
+
+      recentSearchItems = [];
+      recentSearchItems.push( localStorage.getItem("recentSearch") );
+      recentSearchItems.push( JSON.stringify( recent ) );
+      localStorage.setItem("recentSearch", recentSearchItems);
+
     };
 
     $scope.fetchWeatherData = function(latitude, longitude) {
       weatherDataFactory.getWeatherData(latitude, longitude).then(function(response) {
         var currentWeather = response.data.currently;
 
-        console.log(response);
-
-        $scope.weatherData.weatherStatus      = currentWeather.summary;
-        $scope.weatherData.weatherIcon        = currentWeather.icon;
+        $scope.weatherToday.weatherStatus      = currentWeather.summary;
+        $scope.weatherToday.weatherIcon        = currentWeather.icon;
 
         $scope.weatherToday.weatherStatus      = currentWeather.summary;
         $scope.weatherToday.weatherIcon        = currentWeather.icon;
@@ -56,7 +77,6 @@ angular
         $scope.humidityInPercent( currentWeather.humidity );
         $scope.convertWindDirection( currentWeather.windBearing );
 
-        console.log(currentWeather);
       });
     };
 
