@@ -11,8 +11,6 @@ angular
     $scope.address = '';
     $scope.location = {};
 
-    var recentSearchItems = [];
-
     $('body').css('background-color', localStorage.background_color);
 
     $scope.fetchLocationData = function(location) {
@@ -47,7 +45,7 @@ angular
           $scope.recentSearchData = {
             name: $scope.address,
             lat: $scope.location.lat,
-            lan: $scope.location.lng
+            lng: $scope.location.lng
           };
 
           //Save current location
@@ -132,5 +130,10 @@ angular
         $scope.weatherToday.windDirection = ( deg <= 270 ) ? 'South-west' : 'North-West';
       }
     };
+
+    if( localStorage.getItem('clickedLocation') != null ) {
+      $scope.fetchLocationData( localStorage.getItem('clickedLocation') );
+      localStorage.removeItem('clickedLocation');
+    }
 
   }]);

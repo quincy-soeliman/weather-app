@@ -39,7 +39,7 @@
 		<div class="row">
 			<h3>Saved locations</h3>
 			<div class="locations-saved">
-				<p ng-repeat="currentLoc in currentLocationList">
+				<p ng-repeat="currentLoc in currentLocationList" ng-click="goToSavedLocation(currentLoc.name)">
 					{{currentLoc.name}}
 				</p>
 
@@ -50,7 +50,7 @@
 		<div class="row">
 			<h3>Recently searched locations</h3>
 			<div class="locations-history">
-					<p ng-repeat="recent in localSearchHistory">
+					<p ng-repeat="recent in localSearchHistory" ng-click="goToSavedLocation(recent.name)">
 						{{recent.name}}
 					</p>
 			</div>

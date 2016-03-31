@@ -3,7 +3,7 @@ angular
 		'settingsDirective',
 		'weatherData'
 	])
-	.controller('settingsController', ['$scope', 'weatherDataFactory', function($scope, weatherDataFactory) {
+	.controller('settingsController', ['$scope', '$window', 'weatherDataFactory', function($scope, $window, weatherDataFactory) {
 		$scope.title = 'Settings';
 		localStorage.background_color;
 
@@ -57,5 +57,10 @@ angular
 		//Load recent search history
 		$scope.localSearchHistory = angular.fromJson( localStorage.getItem('recentSearch') );
 		$scope.localSearchHistory.reverse();
+
+		$scope.goToSavedLocation = function(name) {
+			localStorage.setItem('clickedLocation', name);
+			$window.location.href = "/#/"
+		}
 
 	}]);
