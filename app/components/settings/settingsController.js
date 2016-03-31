@@ -29,10 +29,33 @@ angular
 			weatherDataFactory.tempScale = tempScale;
 		};
 
-		( function() {
-			//Load search history
-			var localSearchHistory = JSON.parse( localStorage.getItem("recentSearch") );
-			console.log(localSearchHistory);
-		}());
+		//Save and load current location
+		if( localStorage.getItem('currentLocationList') == null ) {
+			localStorage.setItem('currentLocationList', angular.toJson( [] ));
+		}
+		$scope.currentLocationList = angular.fromJson( localStorage.getItem('currentLocationList') );
+		$scope.currentLocationList.reverse();
+
+		$scope.saveCurrentLocation = function() {
+			$scope.currentLocationList = [];
+
+			$scope.currentLocation = angular.fromJson( localStorage.getItem('currentLocation') );
+			$scope.currentLocationList = angular.fromJson( localStorage.getItem('currentLocationList') );
+
+			if( $scope.currentLocationList.length < 5 ) {
+				$scope.currentLocationList.push( $scope.currentLocation );
+				localStorage.setItem('currentLocationList', angular.toJson( $scope.currentLocationList ));
+				$scope.currentLocationList.reverse();
+			} else {
+				$scope.currentLocationList.shift();
+				$scope.currentLocationList.push( $scope.currentLocation );
+				localStorage.setItem('currentLocationList', angular.toJson( $scope.currentLocationList ));
+				$scope.currentLocationList.reverse();
+			}
+		}
+
+		//Load recent search history
+		$scope.localSearchHistory = angular.fromJson( localStorage.getItem('recentSearch') );
+		$scope.localSearchHistory.reverse();
 
 	}]);

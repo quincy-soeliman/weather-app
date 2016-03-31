@@ -42,22 +42,35 @@ angular
 
           $scope.fetchWeatherData($scope.location.lat, $scope.location.lng);
 
-          $scope.saveToRecentlySearched(recentSearch);
+          //Save recently searched
+          $scope.recentSearch = [];
+          $scope.recentSearchData = {
+            name: $scope.address,
+            lat: $scope.location.lat,
+            lan: $scope.location.lng
+          };
+
+          //Save current location
+          localStorage.setItem('currentLocation', angular.toJson( $scope.recentSearchData ));
+
+          if ( localStorage.getItem('recentSearch') == null ) {
+            localStorage.setItem('recentSearch', angular.toJson( $scope.recentSearch ));
+          }
+
+          $scope.recentSearch = angular.fromJson( localStorage.getItem('recentSearch') );
+
+          if( $scope.recentSearch.length < 5 ) {
+            $scope.recentSearch.push( $scope.recentSearchData );
+            localStorage.setItem('recentSearch', angular.toJson( $scope.recentSearch ));
+          } else {
+            $scope.recentSearch.shift();
+            $scope.recentSearch.push( $scope.recentSearchData );
+            localStorage.setItem('recentSearch', angular.toJson( $scope.recentSearch ));
+          }
+
+          $scope.items = localStorage.getItem('recentSearch');
         });
       }
-    };
-
-    $scope.saveToRecentlySearched = function(recent) {
-
-      if( localStorage.getItem("recentSearch") == null ) {
-        localStorage.setItem("recentSearch", recentSearchItems);
-      }
-
-      recentSearchItems = [];
-      recentSearchItems.push( localStorage.getItem("recentSearch") );
-      recentSearchItems.push( JSON.stringify( recent ) );
-      localStorage.setItem("recentSearch", recentSearchItems);
-
     };
 
     $scope.fetchWeatherData = function(latitude, longitude) {

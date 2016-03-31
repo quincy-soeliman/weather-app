@@ -39,18 +39,20 @@
 		<div class="row">
 			<h3>Saved locations</h3>
 			<div class="locations-saved">
-				<ul>
-					<li>Breda, Netherlands</li>
-				</ul>
+				<p ng-repeat="currentLoc in currentLocationList">
+					{{currentLoc.name}}
+				</p>
 
-				<button class="btn-primary">Save current location</button>
+				<button class="btn-primary" ng-click="saveCurrentLocation()">Save current location</button>
 			</div>
 		</div>
 
 		<div class="row">
 			<h3>Recently searched locations</h3>
 			<div class="locations-history">
-				{{history}}
+					<p ng-repeat="recent in localSearchHistory">
+						{{recent.name}}
+					</p>
 			</div>
 		</div>
 	</div>
