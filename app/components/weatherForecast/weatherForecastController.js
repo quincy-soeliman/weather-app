@@ -10,6 +10,7 @@ angular
 
       weatherDataFactory.getWeatherData($scope.location.lat, $scope.location.lng).then(function(response) {
         var data = response.data.daily.data;
+        weatherDataFactory.daily = [];
 
         for (var i = 1; i < data.length; i++) {
           weatherDataFactory.daily.push(data[i]);

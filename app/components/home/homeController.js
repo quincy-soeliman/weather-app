@@ -23,11 +23,6 @@ angular
           $scope.location.lat = $scope.locationData.geometry.location.lat;
           $scope.location.lng = $scope.locationData.geometry.location.lng;
 
-          var location = {
-            lat: $scope.location.lat,
-            lng: $scope.location.lng
-          }
-
           var recentSearch = {
             name: $scope.address,
             lat: $scope.location.lat,
@@ -35,8 +30,8 @@ angular
           }
 
           // Save lat and lng
-          localStorage.setItem("location", angular.toJson(location));
-          $scope.$broadcast('getDaily', angular.toJson(location));
+          localStorage.setItem("location", angular.toJson(recentSearch));
+          $scope.$broadcast('getDaily', angular.toJson(recentSearch));
 
           $scope.fetchWeatherData($scope.location.lat, $scope.location.lng);
 
@@ -134,6 +129,10 @@ angular
     if( localStorage.getItem('clickedLocation') != null ) {
       $scope.fetchLocationData( localStorage.getItem('clickedLocation') );
       localStorage.removeItem('clickedLocation');
+    }
+
+    if( localStorage.getItem('location') != null ) {
+      $scope.fetchLocationData( angular.fromJson( localStorage.getItem('location') ).name );
     }
 
   }]);

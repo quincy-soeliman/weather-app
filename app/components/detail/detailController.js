@@ -4,7 +4,7 @@ angular
     'locationData',
     'weatherData'
   ])
-  .controller('detailController', ['$scope', '$timeout', 'locationDataFactory', 'weatherDataFactory', function($scope, $timeout, locationDataFactory, weatherDataFactory) {
+  .controller('detailController', ['$scope', '$window', '$timeout', 'locationDataFactory', 'weatherDataFactory', function($scope, $window, $timeout, locationDataFactory, weatherDataFactory) {
     $scope.locationData = {};
     $scope.weatherData = {};
 
@@ -103,5 +103,9 @@ angular
         $scope.windDirection = ( deg <= 270 ) ? 'South-west' : 'North-West';
       }
     };
+
+    $scope.goHome = function() {
+      $window.location.href = '/#/';
+    }
 
   }]);
