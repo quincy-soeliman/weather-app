@@ -21,7 +21,7 @@ angular
       $timeout(function() {
         $scope.loadWeatherImage();
       }, 0);
-
+      
       $scope.weatherIcon = $scope.weatherData.icon;
 
       $scope.currentDate = $scope.weatherData.time * 1000;
@@ -43,7 +43,11 @@ angular
     };
 
     $scope.loadWeatherImage = function() {
-      var icons = new Skycons();
+      var icons = new Skycons({ 
+        "color": "white",
+        "resizeClear": true
+      });
+
       var list  = [
         "clear-day", "clear-night", "partly-cloudy-day",
         "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
@@ -62,8 +66,8 @@ angular
     };
 
     $scope.rotateCompass = function(degrees) {
-      $compass = $('.compass-icon');
-      
+      var $compass = $('.compass-icon');
+
       $compass.css({ '-webkit-transform': 'rotate(' + (degrees - 45) + 'deg)' });
       $compass.css({ '-moz-transform': 'rotate(' + (degrees - 45) + 'deg)' });
       $compass.css({ 'transform': 'rotate(' + (degrees - 45) + 'deg)' });
