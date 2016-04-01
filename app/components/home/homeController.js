@@ -13,6 +13,10 @@ angular
 
     $('body').css('background-color', localStorage.background_color);
 
+    if( localStorage.getItem('measureUnit') == null ) {
+      localStorage.setItem('measureUnit', 'ca');
+    }
+
     $scope.fetchLocationData = function(location) {
       if (location != undefined) {
         locationDataFactory.getLocationData(location).then(function(response) {
@@ -77,8 +81,15 @@ angular
         $scope.weatherToday.weatherIcon        = currentWeather.icon;
 
 
-        $scope.weatherToday.currentTemperature = Math.round( currentWeather.apparentTemperature ) + "°";
-        $scope.weatherToday.windSpeed          = Math.round( currentWeather.windSpeed ) + " KM/h";
+
+
+        if( localStorage.getItem('measureUnit') == 'ca' ) {
+          $scope.weatherToday.windSpeed = Math.round( currentWeather.windSpeed ) + " KM/h";
+          $scope.weatherToday.currentTemperature = Math.round( currentWeather.apparentTemperature ) + "°C";
+        } else {
+          $scope.weatherToday.windSpeed = Math.round( currentWeather.windSpeed ) + " mph";
+          $scope.weatherToday.currentTemperature = Math.round( currentWeather.apparentTemperature ) + "°F";
+        }
 
         $scope.humidityInPercent( currentWeather.humidity );
         $scope.convertWindDirection( currentWeather.windBearing );

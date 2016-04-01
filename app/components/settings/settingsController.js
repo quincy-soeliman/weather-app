@@ -26,7 +26,16 @@ angular
 		});
 
 		$scope.setTempScale = function(tempScale) {
-			weatherDataFactory.tempScale = tempScale;
+			switch( tempScale ) {
+				case 'celsius':
+					localStorage.setItem('measureUnit', 'ca');
+					$window.location.reload();
+					break;
+				case 'fahrenheit':
+					localStorage.setItem('measureUnit', 'us');
+					$window.location.reload();
+					break;
+			}
 		};
 
 		//Save and load current location
@@ -61,6 +70,10 @@ angular
 		$scope.goToSavedLocation = function(name) {
 			localStorage.setItem('clickedLocation', name);
 			$window.location.href = "/#/"
+		}
+
+		$scope.goHome = function() {
+			$window.location.href = '/#/';
 		}
 
 	}]);
