@@ -1,0 +1,23 @@
+.detail-container {
+  .header {
+    margin-bottom: $gutter-margin;
+
+    .current-address,
+		.current-date {
+			text-align: center;
+		}
+  }
+
+  .main-content {
+		.weather-extra-data-container {
+			.wind-bearing {
+				.compass-icon {
+					width: 50px;
+					height: auto;
+					transform: rotate(45deg);
+					transition: all 3s ease-in-out;
+				}
+			}
+		}
+  }
+}

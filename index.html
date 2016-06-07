@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" ng-app="weatherApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="dist/css/styles.css">
+
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+  <!-- Scripts -->
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="node_modules/angular/angular.min.js"></script>
+  <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+
+</head>
+<body>
+  <div class="container">
+    <div ui-view></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="dist/js/app.js"></script>
+  <script src="dist/js/routes.js"></script>
+  <script src="dist/js/controllers.js"></script>
+  <script src="dist/js/directives.js"></script>
+  <script src="dist/js/factories.js"></script>
+
+  <!-- Libraries -->
+  <script src="assets/libs/skycons/skycons.js"></script>
+</body>
+</html>

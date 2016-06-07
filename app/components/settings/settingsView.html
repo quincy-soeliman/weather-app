@@ -1,0 +1,59 @@
+<div class="settings container">
+	<div class="header">
+		<div class="row">
+			<div class="col-sm-2">
+				<a ng-click="goHome()">Back</a>
+			</div>
+
+			<div class="col-sm-6">
+				<h2>{{ title }}</h2>
+			</div>
+		</div>
+	</div>
+
+	<div class="main-content">
+		<div class="row">
+			<div class="themes">
+				<h3>Themes</h3>
+
+				<div class="colors">
+					<span class="color blue"></span>
+					<span class="color purple"></span>
+					<span class="color red"></span>
+					<span class="color orange"></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="degree-notation">
+				<h3>Change degree notation</h3>
+
+				<div class="degree-toggle">
+					<p ng-click="setTempScale('celsius')">C°</p>
+					<p ng-click="setTempScale('fahrenheit')">F°</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<h3>Saved locations</h3>
+			<div class="locations-saved">
+				<p ng-repeat="currentLoc in currentLocationList" ng-click="goToSavedLocation(currentLoc.name)">
+					{{currentLoc.name}}
+				</p>
+
+				<button class="btn-primary" ng-click="saveCurrentLocation()">Save current location</button>
+			</div>
+		</div>
+
+		<div class="row">
+			<h3>Recently searched locations</h3>
+			<div class="locations-history">
+					<p ng-repeat="recent in localSearchHistory" ng-click="goToSavedLocation(recent.name)">
+						{{recent.name}}
+					</p>
+			</div>
+		</div>
+	</div>
+</div>
